@@ -27,6 +27,7 @@ The system is designed to route customer support queries to one of three special
     - Post-training evaluation and comparison.
     - Automated visualization of training progress and agent-specific accuracy.
 
+
 ## ⚙️ Training Configuration
 
 | Parameter | Value |
@@ -39,6 +40,9 @@ The system is designed to route customer support queries to one of three special
 | **Scheduler** | `constant` |
 
 ## 📊 Evaluation & Results
+<img width="1489" height="1200" alt="newplot" src="https://github.com/user-attachments/assets/b667e27a-aa68-44b4-a362-ce56a08e9e6e" />
+
+<img width="1374" height="551" alt="image" src="https://github.com/user-attachments/assets/5877e2f2-794c-4f8b-8f8d-f18034ea0eb5" />
 
 
 ## 🤝 Contribution
