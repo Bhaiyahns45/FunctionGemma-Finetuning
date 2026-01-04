@@ -19,7 +19,7 @@ The system is designed to route customer support queries to one of three special
 
 - **Model**: `google/functiongemma-270m-it`
 - **Libraries**: `torch`, `transformers`, `datasets`, `trl`, `accelerate`, `evaluate`.
-- **Fine-tuned model (Hugging Face)**: `bhaiya45/functiongemma-270m-it-multiagent-router` — https://huggingface.co/bhaiya45/functiongemma-270m-it-multiagent-router
+- **Fine-tuned model (Hugging Face)**: `bhaiyasingh45/functiongemma-270m-it-multiagent-router` — https://huggingface.co/bhaiyasingh45/functiongemma-270m-it-multiagent-router
 - **Optimization**: Configured for **Free T4 GPU (16GB VRAM)** environments like Google Colab.
 - **Workflow**:
     - Synthetic dataset generation (conversational format).
