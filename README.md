@@ -77,9 +77,15 @@ The optimized training configuration achieved these results:
 
 ### Training Visualizations
 
-<img width="1489" height="1200" alt="Training Analysis" src="https://github.com/user-attachments/assets/b667e27a-aa68-44b4-a362-ce56a08e9e6e" />
+<img width="1006" height="393" alt="image" src="https://github.com/user-attachments/assets/1ae3af69-acb2-4881-85ac-07d886e27b15" />
+<img width="944" height="341" alt="image" src="https://github.com/user-attachments/assets/f3e371ee-00bc-4ec0-83a8-de3267e6b2b7" />
+<img width="955" height="333" alt="image" src="https://github.com/user-attachments/assets/2c45b9c4-3be4-4c45-8626-cdd3dee9e64d" />
 
-<img width="1374" height="551" alt="Training Progress" src="https://github.com/user-attachments/assets/5877e2f2-794c-4f8b-8f8d-f18034ea0eb5" />
+
+
+
+<img width="987" height="550" alt="image" src="https://github.com/user-attachments/assets/b608018f-f308-4ca0-9cfd-b88634304a39" />
+
 
 
 ## 📈 Performance Analysis
