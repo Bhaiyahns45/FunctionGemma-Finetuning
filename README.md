@@ -24,28 +24,93 @@ The system is designed to route customer support queries to one of three special
 - **Workflow**:
     - Synthetic dataset generation (conversational format).
     - Pre-training evaluation (baseline accuracy).
-    - Supervised Fine-Tuning (SFT) using `SFTTrainer`.
+    - Supervised Fine-Tuning (SFT) using `SFTTrainer` with improved hyperparameters.
     - Post-training evaluation and comparison.
     - Automated visualization of training progress and agent-specific accuracy.
+    - Dataset and model upload to Hugging Face Hub with comprehensive documentation.
 
 
 ## ⚙️ Training Configuration
 
-| Parameter | Value |
-| :--- | :--- |
-| **Epochs** | 8 |
-| **Batch Size** | 4 |
-| **Learning Rate** | 5e-5 |
-| **Optimizer** | `adamw_torch_fused` |
-| **Mixed Precision** | `fp16` (on T4) |
-| **Scheduler** | `constant` |
+| Parameter | Value | Description |
+| :--- | :--- | :--- |
+| **Epochs** | 15 | With early stopping based on validation loss |
+| **Batch Size** | 4 | Per device (effective: 8 with gradient accumulation) |
+| **Learning Rate** | 2e-5 | Lower rate for stable training and better generalization |
+| **Optimizer** | `adamw_torch_fused` | Fused AdamW for efficiency |
+| **Weight Decay** | 0.01 | L2 regularization to prevent overfitting |
+| **Warmup Ratio** | 0.1 | 10% of training steps for learning rate warmup |
+| **Scheduler** | `cosine` | Cosine annealing for better convergence |
+| **Mixed Precision** | `fp16` (on T4) | Automatic based on model dtype |
+| **Gradient Accumulation** | 2 | Effective batch size = 8 |
+| **Train/Test Split** | 80/20 | More training data for small dataset |
 
 ## 📊 Evaluation & Results
-<img width="1489" height="1200" alt="newplot" src="https://github.com/user-attachments/assets/b667e27a-aa68-44b4-a362-ce56a08e9e6e" />
 
-<img width="1374" height="551" alt="image" src="https://github.com/user-attachments/assets/5877e2f2-794c-4f8b-8f8d-f18034ea0eb5" />
+### Training Results
 
+The model achieved significant improvements after fine-tuning:
+
+| Metric | Before Training | After Training | Improvement |
+|--------|----------------|----------------|-------------|
+| **Overall Accuracy** | 0.0% (0/13) | **76.9% (10/13)** | **+76.9%** |
+| **Correct Predictions** | 0 | **10** | **+10** |
+
+### Agent-Specific Performance
+
+| Agent | Before | After | Improvement |
+|-------|--------|-------|-------------|
+| 🔧 **Technical Support** | 0% | **100%** | **+100%** |
+| 💰 **Billing** | 0% | **60%** | **+60%** |
+| 📊 **Product Info** | 0% | **75%** | **+75%** |
+
+### Training Improvements
+
+The optimized training configuration achieved these results:
+
+- ✅ **Lower learning rate** (2e-5) for stable training
+- ✅ **Weight decay** (0.01) to prevent overfitting
+- ✅ **Cosine scheduler with warmup** for better convergence
+- ✅ **Gradient accumulation** (effective batch size = 8)
+- ✅ **More epochs** (15) with early stopping
+- ✅ **Better train/test split** (80/20 instead of 70/30)
+
+### Training Visualizations
+
+<img width="1489" height="1200" alt="Training Analysis" src="https://github.com/user-attachments/assets/b667e27a-aa68-44b4-a362-ce56a08e9e6e" />
+
+<img width="1374" height="551" alt="Training Progress" src="https://github.com/user-attachments/assets/5877e2f2-794c-4f8b-8f8d-f18034ea0eb5" />
+
+
+## 📈 Performance Analysis
+
+### Current Results
+- **Overall Accuracy**: 76.9% (10/13 correct)
+- **Best Performing Agent**: Technical Support (100% accuracy)
+- **Areas for Improvement**: Billing agent (60% - needs more training data)
+
+### Performance Tips
+
+For even better results (target: 85-95% accuracy):
+- **Expand dataset** to 150-200+ samples (currently 65)
+  - Add more billing-related queries to improve billing agent accuracy
+  - Include more edge cases and query variations
+- **Data augmentation**: Paraphrase existing queries to increase diversity
+- **Fine-tuning**: Continue training if validation loss keeps decreasing
+- **Monitor**: Track per-agent performance to identify weak areas
+
+## 📚 Resources
+
+- **Model on Hugging Face**: [bhaiyasingh45/functiongemma-multiagent-router](https://huggingface.co/bhaiyasingh45/functiongemma-multiagent-router)
+- **Dataset on Hugging Face**: [bhaiyasingh45/multiagent-router-finetuning](https://huggingface.co/datasets/bhaiyasingh45/multiagent-router-finetuning)
+- **Base Model**: [google/functiongemma-270m-it](https://huggingface.co/google/functiongemma-270m-it)
 
 ## 🤝 Contribution
 
-Contributions are welcome! If you have ideas for adding more specialized agents or improving the routing logic, feel free to open a PR.
+Contributions are welcome! If you have ideas for:
+- Adding more specialized agents
+- Improving the routing logic
+- Expanding the dataset
+- Optimizing training parameters
+
+Feel free to open a PR or issue!
