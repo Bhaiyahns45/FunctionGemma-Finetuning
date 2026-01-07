@@ -1,6 +1,6 @@
 # FunctionGemma Multi-Agent Routing Fine-tuning
 
-This repository contains a specialized implementation for fine-tuning **FunctionGemma** (270M parameters) to act as an intelligent routing layer in a multi-agent ecosystem.
+This repository contains a specialized implementation for fine-tuning(STF)  **FunctionGemma** (270M parameters) to act as an intelligent routing layer in a multi-agent ecosystem.
 
 ## 🚀 Projects Overview
 
@@ -72,19 +72,22 @@ The configuration is optimized for **slower convergence** (8-10 epochs instead o
 - ✅ **Higher weight decay** (0.02) for more regularization
 - ✅ **Reduced warmup** (5%) for slower start
 - ✅ **Larger effective batch** (12) with gradient accumulation
-- ✅ **Expanded dataset** (~100 samples) for more diversity
+- ✅ **Expanded dataset** (~115 samples) for more diversity
 - ✅ **15 epochs** with convergence expected around epoch 8-10
 
 ### Training Visualizations
 
-<img width="1006" height="393" alt="image" src="https://github.com/user-attachments/assets/1ae3af69-acb2-4881-85ac-07d886e27b15" />
-<img width="944" height="341" alt="image" src="https://github.com/user-attachments/assets/f3e371ee-00bc-4ec0-83a8-de3267e6b2b7" />
-<img width="955" height="333" alt="image" src="https://github.com/user-attachments/assets/2c45b9c4-3be4-4c45-8626-cdd3dee9e64d" />
+<img width="1198" height="361" alt="image" src="https://github.com/user-attachments/assets/214f0338-a864-43a8-aba6-7d6c6b5b5e42" />
+<img width="1083" height="325" alt="image" src="https://github.com/user-attachments/assets/1b8e5699-36cb-403d-a17e-60aa474f049f" />
+<img width="1116" height="326" alt="image" src="https://github.com/user-attachments/assets/d9c22c3c-3f98-452b-a51f-4883114094b5" />
 
 
 
 
-<img width="987" height="550" alt="image" src="https://github.com/user-attachments/assets/b608018f-f308-4ca0-9cfd-b88634304a39" />
+
+
+<img width="1002" height="559" alt="image" src="https://github.com/user-attachments/assets/cb11d935-1313-4f3b-88f7-d6502c6dd566" />
+
 
 
 
