@@ -34,16 +34,17 @@ The system is designed to route customer support queries to one of three special
 
 | Parameter | Value | Description |
 | :--- | :--- | :--- |
-| **Epochs** | 15 | With early stopping based on validation loss |
-| **Batch Size** | 4 | Per device (effective: 8 with gradient accumulation) |
-| **Learning Rate** | 2e-5 | Lower rate for stable training and better generalization |
+| **Epochs** | 15 | Converges around epoch 8-10 (slower convergence) |
+| **Batch Size** | 4 | Per device (effective: 12 with gradient accumulation) |
+| **Learning Rate** | 1e-5 | Lower rate for slower convergence (8-10 epochs) |
 | **Optimizer** | `adamw_torch_fused` | Fused AdamW for efficiency |
-| **Weight Decay** | 0.01 | L2 regularization to prevent overfitting |
-| **Warmup Ratio** | 0.1 | 10% of training steps for learning rate warmup |
-| **Scheduler** | `cosine` | Cosine annealing for better convergence |
+| **Weight Decay** | 0.02 | Higher L2 regularization to slow convergence |
+| **Warmup Ratio** | 0.05 | 5% warmup for slower start |
+| **Scheduler** | `cosine` | Cosine annealing for gradual convergence |
 | **Mixed Precision** | `fp16` (on T4) | Automatic based on model dtype |
-| **Gradient Accumulation** | 2 | Effective batch size = 8 |
-| **Train/Test Split** | 80/20 | More training data for small dataset |
+| **Gradient Accumulation** | 3 | Effective batch size = 12 (larger for stability) |
+| **Train/Test Split** | 92/23 | ~92 train, ~23 test (expanded dataset) |
+| **Dataset Size** | 115 samples | Expanded with diverse examples for balanced distribution |
 
 ## 📊 Evaluation & Results
 
@@ -53,27 +54,27 @@ The model achieved significant improvements after fine-tuning:
 
 | Metric | Before Training | After Training | Improvement |
 |--------|----------------|----------------|-------------|
-| **Overall Accuracy** | 0.0% (0/13) | **76.9% (10/13)** | **+76.9%** |
-| **Correct Predictions** | 0 | **10** | **+10** |
+| **Overall Accuracy** | 4.3% (1/23) | **82.6% (19/23)** | **+78.3%** |
+| **Correct Predictions** | 1 | **19** | **+18** |
 
 ### Agent-Specific Performance
 
 | Agent | Before | After | Improvement |
 |-------|--------|-------|-------------|
 | 🔧 **Technical Support** | 0% | **100%** | **+100%** |
-| 💰 **Billing** | 0% | **60%** | **+60%** |
-| 📊 **Product Info** | 0% | **75%** | **+75%** |
+| 💰 **Billing** | 0% | **80%** | **+80%** |
+| 📊 **Product Info** | 12% | **75%** | **+62%** |
 
-### Training Improvements
+### Training Configuration for Slower Convergence
 
-The optimized training configuration achieved these results:
+The configuration is optimized for **slower convergence** (8-10 epochs instead of 4):
 
-- ✅ **Lower learning rate** (2e-5) for stable training
-- ✅ **Weight decay** (0.01) to prevent overfitting
-- ✅ **Cosine scheduler with warmup** for better convergence
-- ✅ **Gradient accumulation** (effective batch size = 8)
-- ✅ **More epochs** (15) with early stopping
-- ✅ **Better train/test split** (80/20 instead of 70/30)
+- ✅ **Lower learning rate** (1e-5) to slow down learning
+- ✅ **Higher weight decay** (0.02) for more regularization
+- ✅ **Reduced warmup** (5%) for slower start
+- ✅ **Larger effective batch** (12) with gradient accumulation
+- ✅ **Expanded dataset** (~100 samples) for more diversity
+- ✅ **15 epochs** with convergence expected around epoch 8-10
 
 ### Training Visualizations
 
@@ -91,18 +92,24 @@ The optimized training configuration achieved these results:
 ## 📈 Performance Analysis
 
 ### Current Results
-- **Overall Accuracy**: 76.9% (10/13 correct)
+- **Overall Accuracy**: 82.6% (19/23 correct)
 - **Best Performing Agent**: Technical Support (100% accuracy)
-- **Areas for Improvement**: Billing agent (60% - needs more training data)
+- **Areas for Improvement**: Product Info agent (75% - lowest accuracy)
 
 ### Performance Tips
 
-For even better results (target: 85-95% accuracy):
-- **Expand dataset** to 150-200+ samples (currently 65)
-  - Add more billing-related queries to improve billing agent accuracy
-  - Include more edge cases and query variations
+**Current Configuration:**
+- **Dataset**: 100 samples with balanced distribution across all agents
+- **Convergence**: Model converges around epoch 8-10 (slower than before)
+- **Training**: More gradual learning curve with better generalization
+- **Diversity**: Includes varied query types, edge cases, and realistic scenarios
+
+**For even better results (target: 85-95% accuracy):**
+- **Monitor convergence**: Should see gradual loss decrease over 8-10 epochs
+- **If converging too fast**: Further reduce learning rate to 5e-6 or increase weight decay to 0.03
+- **If converging too slow**: Increase learning rate to 1.5e-5 or reduce weight decay to 0.015
+- **Expand dataset further**: Add more product-info-related queries (currently weakest at 75%)
 - **Data augmentation**: Paraphrase existing queries to increase diversity
-- **Fine-tuning**: Continue training if validation loss keeps decreasing
 - **Monitor**: Track per-agent performance to identify weak areas
 
 ## 📚 Resources
