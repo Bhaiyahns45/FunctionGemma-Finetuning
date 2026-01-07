@@ -101,7 +101,7 @@ The configuration is optimized for **slower convergence** (8-10 epochs instead o
 ### Performance Tips
 
 **Current Configuration:**
-- **Dataset**: 100 samples with balanced distribution across all agents
+- **Dataset**: 115 samples with balanced distribution across all agents
 - **Convergence**: Model converges around epoch 8-10 (slower than before)
 - **Training**: More gradual learning curve with better generalization
 - **Diversity**: Includes varied query types, edge cases, and realistic scenarios
@@ -116,8 +116,8 @@ The configuration is optimized for **slower convergence** (8-10 epochs instead o
 
 ## 📚 Resources
 
-- **Model on Hugging Face**: [bhaiyasingh45/functiongemma-multiagent-router](https://huggingface.co/bhaiyasingh45/functiongemma-multiagent-router)
-- **Dataset on Hugging Face**: [bhaiyasingh45/multiagent-router-finetuning](https://huggingface.co/datasets/bhaiyasingh45/multiagent-router-finetuning)
+- **Model on Hugging Face**: [bhaiyahnsingh45/functiongemma-multiagent-router](https://huggingface.co/bhaiyahnsingh45/functiongemma-multiagent-router)
+- **Dataset on Hugging Face**: [bhaiyahnsingh45/multiagent-router-finetuning](https://huggingface.co/datasets/bhaiyahnsingh45/multiagent-router-finetuning)
 - **Base Model**: [google/functiongemma-270m-it](https://huggingface.co/google/functiongemma-270m-it)
 
 ## 🤝 Contribution
